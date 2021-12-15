@@ -5,10 +5,6 @@
 The intent of this document is to establish a shared set of rules and guidelines for 
 code style, including naming, formatting, and other conventions found in Salesforce development.
 
-Good style guides list rules and standards. Great style guides help establish 
-the engineering culture of the organization. As such, this document should be a living
-representation of HigherEchelon's shared beliefs regarding code style and quality.
-
 ---
 
 ## Naming
