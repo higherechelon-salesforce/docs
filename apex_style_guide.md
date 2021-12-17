@@ -1,4 +1,4 @@
-# Code Style Guide
+# Code Style and Naming Guide
 
 ## Purpose
 
@@ -17,7 +17,7 @@ code style, including naming, formatting, and other conventions found in Salesfo
 - Avoid abbreviations, underscores, or acronyms
 - When in doubt, aim for clarity over brevity. Code is free to write, but hard to understand.
 
-|                        | Suffix               | Example                     |
+| Context                | Suffix               | Example                     |
 | ---------------------- | -------------------- | --------------------------- |
 | Trigger                | Trigger              | AccountTrigger              |
 | Trigger Handler        | TriggerHandler       | AccountTriggerHandler       |
@@ -32,21 +32,20 @@ code style, including naming, formatting, and other conventions found in Salesfo
 ### Variable
 
 - Use Camel Case for local variables and class properties
-  - queriedAccountRecords
+  - `queriedAccountRecords`
 - Use capital snake case for constants
-  - SOQL_LIMIT_SYNC
+  - `SOQL_LIMIT_SYNC`
 - Abbreviations should be used for local variables with limited scope
   - The more lines of code between the variable declaration and last use, the more descriptive the name should be
-  - accsForReq (accountsForCalloutRequest)
 - Never use single letter variables outside of loop iterators
 - Aim for uniformity in abbreviation patterns, considering other code in codebase, file, and method.
   - Decrease the cognitive load of the reader, they appreciate clarity and simplicity over fancy naming models
 - Prefix booleans with is-
-  - isClosing, isAccountOpen
+  - `isClosing`, `isAccountOpen`
 - If including the collection type, use as a prefix to mimc hungarian notation (map-, lst-, set-)
-  - mapContactsByAccId, lstParentOpps
+  - `mapContactsByAccId`, `lstParentOpps`
 - Suffix Id with -Id
-  - accId, closedContactId
+  - `accId`, `closedContactId`
 
 ---
 
@@ -54,7 +53,14 @@ code style, including naming, formatting, and other conventions found in Salesfo
 
 ### Comments
 
-#### Classes, Methods, and Properties
+#### Logic Description Comments
+
+- Comments describing logic should explain **why** instead of **what**
+  - Consistently following this style guide should ensure clear reading quality
+  - Code already tells the reader **what** is going on, not the developer/writer's intent
+  - This helps prevent long and winding debugging sessions where "magic code" manages multiple edge cases
+
+#### Javadoc Comments
 
 - Formal code documentation provides clarity for the reader and contribute to the professional appearance of the codebase
 - All formal structures (classes, methods, public properties, etc) require comments
@@ -84,14 +90,43 @@ code style, including naming, formatting, and other conventions found in Salesfo
 - Recommended Visual Studio Code extension for generating the comment boilerplate is `ApexDox VS Code`
   - https://marketplace.visualstudio.com/items?itemName=PeterWeinberg.apexdox-vs-code
 
-#### Logic Comments
-
-- Comments describing logic should explain **why** instead of **what**
-  - Consistently following this style guide should ensure clear reading quality
-  - Code already tells the reader **what** is going on, not the developer/writer's intent
-  - This helps prevent long and winding debugging sessions where "magic code" manages multiple edge cases
-
 ### Formatting
+
+#### Brackets
+
+- Brackets should follow the Java format of starting on the same line as the preceding block statement
+  - In contrast to the C# style of starting the curly brace on a new line
+
+```java
+// Correct Java style
+public class AccountValidator {
+  ...
+}
+
+// Incorrect C# style
+public class AccountValidator
+{
+  ...
+}
+```
+
+- If statement brackets should start on the same line of the if-block if the conditions take up one line
+  - In the case of a multi-line condition, end the parenthesis and opening curly brace on a new line
+
+```java
+// single line
+if (condition) {
+  ...
+}
+
+// multiline
+if (condition1
+    && condition2
+    && !condition3
+) {
+  ...
+}
+```
 
 #### Spacing
 
@@ -109,7 +144,7 @@ code style, including naming, formatting, and other conventions found in Salesfo
 - Two or less conditions in if blocks should be on same line
 - Three or more conditions or those that take up more than 100 characters in line should be separated at the condition
 
-#### Example
+### Example of Commenting and Code Style
 
 ```java
 
